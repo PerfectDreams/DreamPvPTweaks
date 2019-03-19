@@ -4,6 +4,7 @@ import net.perfectdreams.dreamcore.utils.KotlinPlugin
 import net.perfectdreams.dreamcore.utils.registerEvents
 import org.bukkit.Material
 import org.bukkit.Particle
+import org.bukkit.block.data.BlockData
 import org.bukkit.entity.*
 import org.bukkit.event.EventHandler
 import org.bukkit.event.EventPriority
@@ -25,17 +26,17 @@ class DreamPvPTweaks : KotlinPlugin(), Listener {
 	fun onDamage(e: EntityDamageByEntityEvent) {
 		val victim = e.entity
 		val materialData = when (victim) {
-			is Skeleton -> MaterialData(Material.BONE_BLOCK)
-			is Ghast -> MaterialData(Material.BONE_BLOCK)
-			is MagmaCube -> MaterialData(Material.LAVA)
-			is Blaze -> MaterialData(Material.LAVA)
-			is Creeper -> MaterialData(Material.GREEN_WOOL)
-			is Slime -> MaterialData(Material.GREEN_WOOL)
-			is Enderman -> MaterialData(Material.BLACK_WOOL)
-			is EnderDragon -> MaterialData(Material.BLACK_WOOL)
-			is WitherSkeleton -> MaterialData(Material.BLACK_WOOL)
-			is Wither -> MaterialData(Material.BLACK_WOOL)
-			else -> MaterialData(Material.NETHER_WART)
+			is Skeleton -> Material.BONE_BLOCK.createBlockData()
+			is Ghast -> Material.BONE_BLOCK.createBlockData()
+			is MagmaCube -> Material.LAVA.createBlockData()
+			is Blaze -> Material.LAVA.createBlockData()
+			is Creeper -> Material.GREEN_WOOL.createBlockData()
+			is Slime -> Material.GREEN_WOOL.createBlockData()
+			is Enderman -> Material.BLACK_WOOL.createBlockData()
+			is EnderDragon -> Material.BLACK_WOOL.createBlockData()
+			is WitherSkeleton -> Material.BLACK_WOOL.createBlockData()
+			is Wither -> Material.BLACK_WOOL.createBlockData()
+			else -> Material.NETHER_WART.createBlockData()
 		}
 
 		victim.world.spawnParticle(
